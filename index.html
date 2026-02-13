@@ -137,27 +137,51 @@ nav .links a {
   color:#e5e7eb;
 }
 
-.card-icon{
-  width:clamp(70px, 8vw, 110px);
-  height:clamp(70px, 8vw, 110px);
-  margin:0 auto 22px;
-  border-radius:20px;
-  background:rgba(167,139,250,.15);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:
-    0 0 0 1px rgba(167,139,250,.35),
-    0 0 30px rgba(139,92,246,.35);
+.card{
+  background:rgba(255,255,255,.06);
+  border-radius:22px;
+  overflow:hidden;
+  padding:0;
+  transition:.3s;
 }
 
-.card-icon img{
-  max-width:60%;
-  max-height:60%;
-  width:auto;
-  height:auto;
-  object-fit:contain;
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(139,92,246,.25);
 }
+
+.card-img{
+  width:100%;
+  height:220px; /* 👈 控制图片大小 */
+  overflow:hidden;
+}
+
+.card-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s;
+}
+
+.card:hover .card-img img{
+  transform:scale(1.05);
+}
+
+.card-content{
+  padding:32px 28px 38px;
+}
+
+.card-content h3{
+  font-size:22px;
+  margin-bottom:14px;
+}
+
+.card-content p{
+  font-size:16px;
+  line-height:1.8;
+  color:#e5e7eb;
+}
+
 
 
 /* ================= 第四面占位 ================= */
@@ -285,38 +309,66 @@ nav .links a {
 <section class="screen section">
   <h2 class="reveal">核心能力</h2>
   <div class="cards three reveal">
+
     <div class="card">
-      <div class="card-icon"><img src="图片1.png"></div>
-      <h3>类人导航</h3>
-      <p>模拟人类跨空间认知方式，实现自主环境探索与路径规划，应对复杂场景。</p>
+      <div class="card-img">
+        <img src="images/navigation.jpg" alt="类人导航">
+      </div>
+      <div class="card-content">
+        <h3>类人导航</h3>
+        <p>模拟人类跨空间认知方式，实现自主环境探索与路径规划，应对复杂场景。</p>
+      </div>
     </div>
+
     <div class="card">
-      <div class="card-icon"><img src="icons/qa.png"></div>
-      <h3>认知问答</h3>
-      <p>基于多源信息与跨空间上下文理解，实现自主认知增强与智能问答。</p>
+      <div class="card-img">
+        <img src="images/qa.jpg" alt="认知问答">
+      </div>
+      <div class="card-content">
+        <h3>认知问答</h3>
+        <p>基于多源信息与跨空间上下文理解，实现自主认知增强与智能问答。</p>
+      </div>
     </div>
+
     <div class="card">
-      <div class="card-icon"><img src="icons/task.png"></div>
-      <h3>任务智策</h3>
-      <p>支持基于意图的任务编排与资源调配，实现多智能体协同与自适应决策。</p>
+      <div class="card-img">
+        <img src="images/task.jpg" alt="任务智策">
+      </div>
+      <div class="card-content">
+        <h3>任务智策</h3>
+        <p>支持基于意图的任务编排与资源调配，实现多智能体协同与自适应决策。</p>
+      </div>
     </div>
+
   </div>
 </section>
+
 
 <!-- 第三面 -->
 <section class="screen section">
   <h2 class="reveal">应用场景</h2>
   <div class="cards two reveal">
+
     <div class="card">
-      <div class="card-icon"><img src="icons/traffic.png"></div>
-      <h3>智慧交运系统</h3>
-      <p>融合多源交通感知与线上数字信息，实现基于任务目标的智能交通运输规划，支持协同调度与风险预警。</p>
+      <div class="card-img">
+        <img src="images/traffic.jpg" alt="智慧交运系统">
+      </div>
+      <div class="card-content">
+        <h3>智慧交运系统</h3>
+        <p>融合多源交通感知与线上数字信息，实现基于任务目标的智能交通运输规划，支持协同调度与风险预警。</p>
+      </div>
     </div>
+
     <div class="card">
-      <div class="card-icon"><img src="icons/safety.png"></div>
-      <h3>具身安监系统</h3>
-      <p>具身安监系统：协同巡检设备、监控系统与线上信息，对工厂等复杂环境进行主动认知，全面提升安全监测与应急响应能力。</p>
+      <div class="card-img">
+        <img src="images/safety.jpg" alt="具身安监系统">
+      </div>
+      <div class="card-content">
+        <h3>具身安监系统</h3>
+        <p>协同巡检设备、监控系统与线上信息，对工厂等复杂环境进行主动认知，全面提升安全监测与应急响应能力。</p>
+      </div>
     </div>
+
   </div>
 </section>
 
