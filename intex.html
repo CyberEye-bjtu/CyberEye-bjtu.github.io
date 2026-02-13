@@ -1,1 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<title>灵眸 CyberEye</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:"Segoe UI","PingFang SC",sans-serif;
+  background:#020617;
+  color:#f8fafc;
+}
+
+/* ================= 顶部导航（严格保留） ================= */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 70px;
+  background:#ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 36px;
+  z-index: 1000;
+}
+nav h1 {
+  font-size: 22px;
+  color: #1f2937;
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+nav h1 img { height: 26px; }
+nav .links a {
+  color: #1f2937;
+  text-decoration: none;
+  margin-left: 18px;
+  font-size: 16px;
+}
+
+/* ================= 通用整屏 ================= */
+.screen{
+  min-height:100vh;
+  padding:70px 60px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* ================= 滚动动画 ================= */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .8s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================= 第一面 ================= */
+.hero{
+  background:
+    linear-gradient(180deg, rgba(15,23,42,.55), rgba(2,6,23,.95)),
+    url("微信图片_20250913004543_14_6.jpg") center/cover no-repeat;
+}
+.hero h1{
+  font-size:68px;
+  color:#a78bfa;
+  margin-bottom:18px;
+}
+.hero h2{
+  font-size:30px;
+  margin-bottom:26px;
+}
+.tags{
+  display:flex;
+  gap:18px;
+  margin-bottom:28px;
+}
+.tags span{
+  padding:8px 22px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  font-size:14px;
+}
+.hero p{
+  font-size:18px;
+  line-height:1.9;
+  color:#e5e7eb;
+  max-width:900px;
+  margin-bottom:32px;
+}
+.school{
+  padding:12px 28px;
+  background:#8b5cf6;
+  border-radius:10px;
+  font-weight:600;
+}
+
+/* ================= 通用 Section ================= */
+.section{
+  background:radial-gradient(circle at top,#1e1b4b,#020617);
+}
+.section h2{
+  font-size:52px;
+  margin-bottom:60px;
+}
+
+/* ================= 卡片 ================= */
+.cards{
+  width:100%;
+  max-width:1100px;
+  display:grid;
+  gap:36px;
+}
+.three{grid-template-columns:repeat(3,1fr)}
+.two{grid-template-columns:repeat(2,1fr)}
+
+.card{
+  background:rgba(255,255,255,.06);
+  border-radius:22px;
+  padding:46px 34px;
+}
+.card h3{
+  font-size:22px;
+  margin-bottom:16px;
+}
+.card p{
+  font-size:16px;
+  line-height:1.8;
+  color:#e5e7eb;
+}
+
+.card-icon{
+  width:clamp(70px, 8vw, 110px);
+  height:clamp(70px, 8vw, 110px);
+  margin:0 auto 22px;
+  border-radius:20px;
+  background:rgba(167,139,250,.15);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:
+    0 0 0 1px rgba(167,139,250,.35),
+    0 0 30px rgba(139,92,246,.35);
+}
+
+.card-icon img{
+  max-width:60%;
+  max-height:60%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+
+/* ================= 第四面占位 ================= */
+.placeholder .img-box{
+  height:180px;
+  border:2px dashed rgba(167,139,250,.6);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#c7d2fe;
+  margin-bottom:18px;
+}
+
+/* ================= 第五面（仅改背景渐变） ================= */
+.footer{
+  background:
+    linear-gradient(
+      180deg,
+      #020617 0%,
+      #1e1b4b 55%,
+      #7c3aed 100%
+    );
+}
+.footer h2{
+  font-size:48px;
+  margin-bottom:20px;
+}
+.footer p{
+  font-size:20px;
+  margin-bottom:50px;
+}
+
+/* 联系我们下方紫色填充（保持原样） */
+.contact{
+  font-size:18px;
+  position:relative;
+  display:inline-block;
+}
+.contact::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-10px;
+  width:42px;
+  height:6px;
+  background:#a78bfa;
+  border-radius:999px;
+}
+  /* ======= 第五面升级为大 CTA 展示 ======= */
+.footer{
+  background:
+    radial-gradient(120% 80% at 50% 100%, #2563eb 0%, transparent 60%),
+    linear-gradient(180deg, #020617 0%, #1e1b4b 45%, #7c3aed 100%);
+  text-align:center;
+}
+
+.footer-title{
+  font-size:44px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+.footer-sub{
+  font-size:20px;
+  color:#e5e7eb;
+  margin-bottom:46px;
+}
+
+/* CTA 按钮 */
+.cta-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 36px;
+  font-size:18px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#3b82f6,#a78bfa);
+  color:#fff;
+  cursor:pointer;
+  transition:.3s;
+}
+.cta-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(139,92,246,.45);
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>
+    <img src="cybereye-logo.png" alt="CyberEye Logo">
+    灵眸
+  </h1>
+  <div class="links">
+    <a href="index.html">关于</a>
+    <a href="chat.html">研究</a>
+    <a href="faq.html">设施</a>
+    <a href="progress.html">团队</a>
+    <a href="rag.html">媒体</a>
+    <a href="contact.html">联系方式</a>
+  </div>
+</nav>
+
+<!-- 第一面 -->
+<section class="screen hero">
+  <h1 class="reveal">灵眸 CyberEye</h1>
+  <h2 class="reveal">跨空间大模型</h2>
+  <div class="tags reveal">
+    <span>物理空间</span>
+    <span>信息空间</span>
+  </div>
+  <p class="reveal">
+    整合物理空间具身感知与数字空间多源信息，支持认知增强与高阶推理，
+    带来超越传统的跨空间协同洞察与判断能力。
+  </p>
+  <div class="school reveal">北京交通大学</div>
+</section>
+
+<!-- 第二面 -->
+<section class="screen section">
+  <h2 class="reveal">核心能力</h2>
+  <div class="cards three reveal">
+    <div class="card">
+      <div class="card-icon"><img src="icons/understanding.png"></div>
+      <h3>类人导航</h3>
+      <p>模拟人类跨空间认知方式，实现自主环境探索与路径规划，应对复杂场景。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><img src="icons/qa.png"></div>
+      <h3>认知问答</h3>
+      <p>基于多源信息与跨空间上下文理解，实现自主认知增强与智能问答。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><img src="icons/task.png"></div>
+      <h3>任务智策</h3>
+      <p>支持基于意图的任务编排与资源调配，实现多智能体协同与自适应决策。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 第三面 -->
+<section class="screen section">
+  <h2 class="reveal">应用场景</h2>
+  <div class="cards two reveal">
+    <div class="card">
+      <div class="card-icon"><img src="icons/traffic.png"></div>
+      <h3>智慧交运系统</h3>
+      <p>融合多源交通感知与线上数字信息，实现基于任务目标的智能交通运输规划，支持协同调度与风险预警。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><img src="icons/safety.png"></div>
+      <h3>具身安监系统</h3>
+      <p>具身安监系统：协同巡检设备、监控系统与线上信息，对工厂等复杂环境进行主动认知，全面提升安全监测与应急响应能力。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 第四面 -->
+<section class="screen section">
+  <h2 class="reveal">研究成果展示</h2>
+  <div class="cards two reveal">
+    <div class="card placeholder">
+      <div class="img-box">图片占位</div>
+      <p>文章 / 报告内容占位</p>
+    </div>
+    <div class="card placeholder">
+      <div class="img-box">视频占位</div>
+      <p>实验视频 / 演示内容占位</p>
+    </div>
+  </div>
+</section>
+
+<section class="screen footer">
+  <div class="reveal">
+
+    <div class="footer-title">
+      联系我们
+    </div>
+
+    <div class="footer-sub">
+      跨空间认知 · 多模态融合 · 具身智能协同
+    </div>
+
+    <div class="cta-btn">
+      联系我们
+      <span>›</span>
+    </div>
+
+    <!-- 严格按图片格式排版 -->
+    <div style="margin-top:80px;max-width:600px;text-align:left;">
+
+      <!-- Address -->
+      <div style="display:flex;align-items:flex-start;margin-bottom:40px;gap:18px;">
+        <div style="font-size:22px;">📍</div>
+        <div>
+          <div style="font-size:20px;font-weight:600;margin-bottom:10px;">Address</div>
+          <div style="line-height:1.8;color:#e5e7eb;">
+            北京交通大学<br>
+            北京市海淀区上园村3号<br>
+            Beijing, China 100044
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div style="display:flex;align-items:flex-start;gap:18px;">
+        <div style="font-size:22px;">✉️</div>
+        <div>
+          <div style="font-size:20px;font-weight:600;margin-bottom:10px;">Email</div>
+          <div style="line-height:1.8;color:#e5e7eb;">
+            wangqb6@outlook.com
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("active")
+  })
+},{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
